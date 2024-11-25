@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WaterGuardian
+
+WaterGuardian is an initiative focused on improving water quality in rivers and lakes, particularly in regions like Braunschweig. It combines citizen science, IoT sensor technology, and interactive maps to monitor and raise awareness about water pollution caused by heavy metals, microplastics, and other contaminants. The project aims to:
+
+- **Monitor Water Quality**: Using open-source sensors and buoys to collect real-time data on pollutants like heavy metals.
+- **Empower Communities**: Involve citizens in collecting water samples and contributing to environmental research.
+- **Educate and Inform**: Provide data visualization through an interactive map and organize educational activities to promote environmental awareness.
+- **Support Decision-Making**: Generate scientific data to help policymakers and stakeholders improve water quality.
 
 ## Getting Started
 
-First, run the development server:
+This project is built with [Next.js](https://nextjs.org), a React framework for production.
 
+### Prerequisites
+
+- Install [Bun](https://bun.sh/docs/installation)
+
+### Installation
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/your-repo/waterguardian.git
+    cd waterguardian
+    ```
+
+2. Install dependencies:
+    ```bash
+    bun install
+    ```
+
+3. Set up your `.env` file based on `.env.template`:
+    ```bash
+    cp .env.template .env
+    # Edit .env to include your MapTiler API keys and other environment variables
+    ```
+
+### Running the Development Server
+
+To start the development server, run:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
 bun dev
-```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
