@@ -1,8 +1,8 @@
 'use client'
 
-import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { CustomMarker } from './CustomMarker'
 import rawData from './data/data.json'
 import { useMap } from './hooks'
 import { Sidebar } from './Sidebar'
@@ -35,24 +35,22 @@ export const Map = () => {
   const [selectedData, setSelectedData] = useState<MeasurementData | null>(null)
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
-  useEffect(() => {
-    if (!map) return
-
-    measurementData.forEach((data) => {
-      const marker = new maplibregl.Marker()
-        .setLngLat([data.geo[0], data.geo[1]])
-        .addTo(map)
-
-      marker.getElement().addEventListener('click', () => {
-        setSelectedData(data)
-        setSidebarOpen(true)
-      })
-    })
-  }, [map])
-
   return (
     <div className="relative w-screen h-[80vh] flex overflow-hidden">
-      <div ref={mapContainerRef} className="flex-grow w-full h-full"></div>
+      <div ref={mapContainerRef} className="flex-grow w-full h-full">
+        {map &&
+          measurementData.map((data) => (
+            <CustomMarker
+              key={data.id}
+              map={map}
+              position={[data.geo[0], data.geo[1]]}
+              onClick={() => {
+                setSelectedData(data)
+                setSidebarOpen(true)
+              }}
+            />
+          ))}
+      </div>
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)}>
         {selectedData ? (
           <div>
