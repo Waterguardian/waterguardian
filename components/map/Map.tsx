@@ -50,20 +50,25 @@ export const Map = () => {
             map={map}
             position={[data.geo[0], data.geo[1]]}
             onClick={() => handleMarkerClick(data)}
+            isSelected={selectedData?.id === data.id}
           />
         ))}
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)}>
         {selectedData ? (
           <div>
             <h2 className="text-lg font-bold">Measurement Data</h2>
-            <p>
+            <div className="mt-2 text-sm text-[--gray-11]">
+              ID: {selectedData.id}
+            </div>
+            <p className="mt-2">
               <strong>Date:</strong>{' '}
               {new Date(selectedData.date).toLocaleString()}
             </p>
-            <ul className="mt-4">
+            <ul className="mt-4 space-y-2">
               {Object.entries(selectedData.values).map(([key, value]) => (
-                <li key={key}>
-                  <strong>{key}:</strong> {value}
+                <li key={key} className="flex justify-between">
+                  <strong>{key}:</strong>
+                  <span>{value}</span>
                 </li>
               ))}
             </ul>
