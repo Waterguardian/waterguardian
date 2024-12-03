@@ -1,4 +1,4 @@
-@import '@radix-ui/themes/styles.css';
+@import "@radix-ui/themes/styles.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,19 +17,23 @@
 /* Keyframes for sidebar transition */
 @keyframes slideIn {
   from {
-    transform: translateX(100%);
+    transform: translateX(110%);
+    opacity: 0;
   }
   to {
     transform: translateX(0);
+    opacity: 1;
   }
 }
 
 @keyframes slideOut {
   from {
     transform: translateX(0);
+    opacity: 1;
   }
   to {
-    transform: translateX(100%);
+    transform: translateX(110%);
+    opacity: 0;
   }
 }
 
