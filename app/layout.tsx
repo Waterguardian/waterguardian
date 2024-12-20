@@ -1,7 +1,7 @@
-import { DarkMode } from '@/components/DarkMode'
 import Footer from '@/components/Footer'
 import Header from '@/components/header/Header'
 import { cn } from '@/util/cn'
+import { DarkMode } from '@/util/useDarkMode'
 import { GeistSans } from 'geist/font/sans'
 import type { Metadata } from 'next'
 import './globals.css'

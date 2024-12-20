@@ -1,5 +1,11 @@
 'use client'
 import { Cross2Icon } from '@radix-ui/react-icons'
+import {
+  ScrollArea,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaViewport,
+} from '@radix-ui/react-scroll-area'
 import { Separator } from '@radix-ui/react-separator'
 import { ReactNode, useEffect, useState } from 'react'
 import { cn } from '../../util/cn'
@@ -19,7 +25,7 @@ export const Sidebar = ({ open, onClose, children }: SidebarProps) => {
     } else {
       const timer = setTimeout(() => {
         setIsVisible(false)
-      }, 300) // Match animation duration
+      }, 300)
       return () => clearTimeout(timer)
     }
   }, [open])
@@ -30,9 +36,9 @@ export const Sidebar = ({ open, onClose, children }: SidebarProps) => {
     <div
       className={cn(
         'absolute top-4 right-4 z-40',
-        'h-fit w-80',
+        'h-full sm:h-fit max-h-[85%] w-80', // Responsive height and width
         'shadow-lg p-4',
-        'rounded-xl overflow-y-auto',
+        'rounded-xl overflow-hidden',
         'duration-300',
         'bg-[--gray-1]',
         open
@@ -48,7 +54,8 @@ export const Sidebar = ({ open, onClose, children }: SidebarProps) => {
         onClick={onClose}
         className={cn(
           'absolute top-2 right-2',
-          'h-6 w-6 rounded-full',
+          'h-8 w-8 sm:h-6 sm:w-6', // Larger button on small screens
+          'rounded-full',
           'flex items-center justify-center',
           'text-[--gray-11]',
           'hover:text-[--gray-12]',
@@ -57,10 +64,20 @@ export const Sidebar = ({ open, onClose, children }: SidebarProps) => {
         )}
         aria-label="Close"
       >
-        <Cross2Icon />
+        <Cross2Icon width={20} height={20} className="sm:w-4 sm:h-4" />
       </button>
 
-      <div className="text-[--gray-11]">{children}</div>
+      <ScrollArea className="h-[calc(100%-80px)] w-full">
+        <ScrollAreaViewport className="h-full w-full">
+          <div className="text-[--gray-11] pr-4">{children}</div>
+        </ScrollAreaViewport>
+        <ScrollAreaScrollbar
+          orientation="vertical"
+          className="flex select-none touch-none p-0.5 bg-[--gray-3] transition-colors duration-150 ease-out hover:bg-[--gray-4] data-[orientation=vertical]:w-2.5 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:h-2.5"
+        >
+          <ScrollAreaThumb className="flex-1 bg-[--gray-6] rounded-[10px] relative before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:h-full before:min-w-[44px] before:min-h-[44px]" />
+        </ScrollAreaScrollbar>
+      </ScrollArea>
     </div>
   )
 }
